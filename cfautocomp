@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# basic autocompletion for cf comand line
+_cf_complete() {
+	local cur prev words cword
+
+	_get_comp_words_by_ref cur prev words cword
+
+	local ITEMS=()
+	COMPREPLY=()
+	
+  while read -r line; do
+	  ITEMS+=("$line")
+  done < <(cf apps | awk 'NR>4 { print $1; }')
+  
+  local item
+  for item in ${ITEMS[@]}; do	
+	  if [[ $item =~ ^$cur.* ]]; then
+	    COMPREPLY+=($item)
+	  fi
+  done
+} && complete -o bashdefault -o default -F _cf_complete cf 
