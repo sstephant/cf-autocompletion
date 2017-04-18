@@ -4,5 +4,5 @@
 ## installation
 in ~/.bashrc you can add:
 ```bash
-[[ -f ~/cfcomp ]] && source ~/cfcomp
+[[ -f ~/cfautocomp ]] && source ~/cfautocomp
 ```
